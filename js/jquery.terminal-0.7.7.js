@@ -22,7 +22,7 @@
  * Copyright 2007-2012 Steven Levithan <stevenlevithan.com>
  * Available under the MIT License
  *
- * Date: Wed, 09 Oct 2013 13:38:31 +0000
+ * Date: Fri, 01 Nov 2013 04:10:42 +0000
  */
 
 
@@ -2795,7 +2795,10 @@
                 if (e.which !== 9) { // not a TAB
                     tab_count = 0;
                 }
-                if (e.which === 68 && e.ctrlKey) { // CTRL+D
+                if (e.which === 76 && e.ctrlKey) { // CTRL+L
+                    self.clear();
+                }
+                else if (e.which === 67 && e.ctrlKey) { // CTRL+C
                     if (command_line.get() === '') {
                         if (interpreters.size() > 1 ||
                             settings.login !== undefined) {
@@ -3315,6 +3318,7 @@
                         output_buffer = [];
                         draw_line(string, settings);
                         if (settings.flush) {
+                            console.log('flush');
                             flush();
                         }
                         lines.push([string, settings]);
@@ -3328,7 +3332,9 @@
                             }
                         }
                         on_scrollbar_show_resize();
+                        console.log(string);
                     } catch (e) {
+                        // if echo throw exception we can't use error to display that exception
                         alert('terminal.echo ' + exception_message(e) + '\n' +
                               e.stack);
                     }

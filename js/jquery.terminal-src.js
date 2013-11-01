@@ -2795,7 +2795,10 @@
                 if (e.which !== 9) { // not a TAB
                     tab_count = 0;
                 }
-                if (e.which === 68 && e.ctrlKey) { // CTRL+D
+                if (e.which === 76 && e.ctrlKey) { // CTRL+L
+                    self.clear();
+                }
+                else if (e.which === 67 && e.ctrlKey) { // CTRL+C
                     if (command_line.get() === '') {
                         if (interpreters.size() > 1 ||
                             settings.login !== undefined) {
